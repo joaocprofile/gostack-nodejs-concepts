@@ -63,13 +63,13 @@ app.put("/repositories/:id", (request, response) => {
 app.delete("/repositories/:id", (request, response) => {
   const { id } = request.params
 
-  let repoIndex = repositories.findIndex(
+  const repoIndex = repositories.findIndex(
     repo => repo.id === id
-  )  
+  )
   if (repoIndex < 0){
     return response.status(400).json({error: "Repository not found"})
   }
-  repositories.splice(id, 1)
+  repositories.splice(repoIndex, 1)
   return response.status(204).send()
 });
 
